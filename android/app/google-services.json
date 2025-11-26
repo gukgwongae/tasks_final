@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "774026248733",
+    "project_id": "tasks-868d8",
+    "storage_bucket": "tasks-868d8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:774026248733:android:d6aeb0ec42bf05d7cc3cf4",
+        "android_client_info": {
+          "package_name": "com.sparta.tasks"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB79UdCxztvLP5HgY0FU9flHk2r4IgwfDk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
