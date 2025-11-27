@@ -25,3 +25,14 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+// 날씨 위젯 제거?
+
+// go router 이용해 페이지 전환 - 패키지
+// 터치 버튼에 디바운싱 적용 - 패키지
+// hero 위젯으로 상세화면 전환 효과 부여
+
+// pull to refresh, infinite scrolling 구현
+// 반응형 ui로 수정
+// 테스트 코드 작성 (안할듯?)
+// 나만의 기능 -
