@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:tasks/core/app_theme.dart';
 import 'package:tasks/domain/view_model/home_page_view_model.dart';
@@ -21,7 +22,7 @@ class DetailPage extends ConsumerWidget {
       appBar: AppBar(
         backgroundColor: vrc(context).background200,
         leading: IconButton(
-          onPressed: () => Navigator.pop(context),
+          onPressed: () => context.go('/'),
           icon: Icon(Icons.arrow_back_rounded),
         ),
         actions: [

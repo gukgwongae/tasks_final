@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:tasks/core/app_theme.dart';
-import 'package:tasks/ui/detail_page/detail_page.dart';
 import 'package:tasks/domain/view_model/home_page_view_model.dart';
 import 'package:tasks/data/model/to_do_model.dart';
 
@@ -41,12 +41,9 @@ class ToDoView extends ConsumerWidget {
           ),
           Expanded(
             child: InkWell(
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => DetailPage(toDoId: toDo.id),
-                ),
-              ),
+              onTap: () {
+                context.go('/todo/${toDo.id}');
+              },
               child: Text(
                 toDo.title,
                 style: TextStyle(
