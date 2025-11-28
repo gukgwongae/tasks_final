@@ -48,6 +48,23 @@ class DetailPage extends ConsumerWidget {
             ),
           ),
         ],
+        title: Hero(
+          tag: 'todo-title-${toDo.id}',
+          child: Container(
+            color: Colors.transparent,
+            child: Text(
+              toDo.title,
+              style: TextStyle(
+                color: vrc(context).textColor200,
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                decoration: toDo.isDone
+                    ? TextDecoration.lineThrough
+                    : TextDecoration.none,
+              ),
+            ),
+          ),
+        ),
       ),
       body: Container(
         color: vrc(context).background300,
@@ -56,14 +73,6 @@ class DetailPage extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           spacing: 12,
           children: [
-            Text(
-              toDo.title,
-              style: TextStyle(
-                color: vrc(context).textColor200,
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               spacing: 12,

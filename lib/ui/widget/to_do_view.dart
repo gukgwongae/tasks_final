@@ -44,14 +44,21 @@ class ToDoView extends ConsumerWidget {
               onTap: () {
                 context.go('/todo/${toDo.id}');
               },
-              child: Text(
-                toDo.title,
-                style: TextStyle(
-                  color: vrc(context).textColor200,
-                  fontSize: 16,
-                  decoration: toDo.isDone
-                      ? TextDecoration.lineThrough
-                      : TextDecoration.none,
+              child: Hero(
+                tag: 'todo-title-${toDo.id}',
+                child: Container(
+                  color: Colors.transparent,
+                  child: Text(
+                    toDo.title,
+                    style: TextStyle(
+                      color: vrc(context).textColor200,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      decoration: toDo.isDone
+                          ? TextDecoration.lineThrough
+                          : TextDecoration.none,
+                    ),
+                  ),
                 ),
               ),
             ),

@@ -2,13 +2,14 @@ import 'package:go_router/go_router.dart';
 import 'package:tasks/ui/detail_page/detail_page.dart';
 import 'package:tasks/ui/error_page/error_page.dart';
 import 'package:tasks/ui/home_page/home_page.dart';
+import 'package:tasks/ui/responsive_page/responsive_page.dart';
 
 final router = GoRouter(
   routes: [
     //
     GoRoute(
       path: '/',
-      builder: (context, state) => const HomePage(title: 'final tasks'),
+      builder: (context, state) => const ResponsivePage(),
       routes: [
         GoRoute(
           path: 'todo/:id',
