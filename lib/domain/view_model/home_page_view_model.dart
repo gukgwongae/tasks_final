@@ -1,27 +1,47 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:tasks/data/model/to_do_model.dart';
 import 'package:tasks/domain/repository/to_do_repository.dart';
-
 part 'home_page_view_model.g.dart';
 
 @riverpod
 class HomePageViewModel extends _$HomePageViewModel {
   final ToDoRepository toDoRepository = ToDoRepository();
 
+  DocumentSnapshot? lastDoc;
+  bool isLoading = false;
+
   @override
   Future<List<ToDoModel>> build() async {
-    return await toDoRepository.getToDos();
+    lastDoc = null;
+    final result = await toDoRepository.getToDos();
+    lastDoc = result['lastDoc'];
+    return result['todos'];
+  }
+
+  Future<void> fetchMoreTodos() async {
+    if (isLoading) return;
+    isLoading = true;
+    final result = await toDoRepository.getToDos(lastDoc: lastDoc);
+    final moreTodos = result['todos'] as List<ToDoModel>;
+    if (moreTodos.isNotEmpty) {
+      state = AsyncData([...state.value!, ...moreTodos]);
+      lastDoc = result['lastDoc'] as DocumentSnapshot?;
+    }
+    isLoading = false;
+  }
+
+  Future<void> refreshTodos() async {
+    lastDoc = null;
+    state = const AsyncValue.loading();
+    final result = await toDoRepository.getToDos();
+    lastDoc = result['lastDoc'];
+    state = AsyncData(result['todos'] as List<ToDoModel>);
   }
 
   Future<void> addTodo({required ToDoModel toDo}) async {
     state = AsyncValue.loading();
     state = AsyncData([...state.value!, toDo]);
-
-    Map<String, dynamic> json = toDo.toJson();
-
-    final a = json["isD0ne"];
-    // toDo.
-    final b = toDo.isDone;
 
     await toDoRepository.addToDo(toDo);
   }

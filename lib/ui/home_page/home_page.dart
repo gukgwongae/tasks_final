@@ -54,17 +54,42 @@ class _TodoBody extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final todos = ref.watch(homePageViewModelProvider);
-    return todos.when(
+    final todosAsync = ref.watch(homePageViewModelProvider);
+    final scrollController = ScrollController();
+
+    void _onScroll() {
+      if (scrollController.position.pixels >=
+          scrollController.position.maxScrollExtent - 100) {
+        ref.read(homePageViewModelProvider.notifier).fetchMoreTodos();
+      }
+    }
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      scrollController.removeListener(_onScroll);
+      scrollController.addListener(_onScroll);
+    });
+
+    return todosAsync.when(
       loading: () => const Center(child: CircularProgressIndicator()),
       error: (e, _) => Center(child: Text('$e')),
       data: (items) => items.isEmpty
           ? NoToDo(title: title)
-          : Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-              child: ListView.builder(
-                itemCount: items.length,
-                itemBuilder: (context, i) => ToDoView(toDo: items[i]),
+          : RefreshIndicator(
+              onRefresh: () async {
+                await ref
+                    .read(homePageViewModelProvider.notifier)
+                    .refreshTodos();
+              },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 8,
+                  horizontal: 12,
+                ),
+                child: ListView.builder(
+                  controller: scrollController,
+                  itemCount: items.length,
+                  itemBuilder: (context, i) => ToDoView(toDo: items[i]),
+                ),
               ),
             ),
     );

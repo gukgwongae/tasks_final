@@ -1,4 +1,3 @@
-
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'to_do_model.freezed.dart';
@@ -10,6 +9,7 @@ abstract class ToDoModel with _$ToDoModel {
     required String id,
     required String title,
     required String? description,
+    required DateTime createdAt,
     @JsonKey(name: 'is_favorite') required bool isFavorite,
     @JsonKey(name: 'is_done') required bool isDone,
   }) = _ToDoModel;

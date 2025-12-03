@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ToDoModel {
 
- String get id; String get title; String? get description;@JsonKey(name: 'is_favorite') bool get isFavorite;@JsonKey(name: 'is_done') bool get isDone;
+ String get id; String get title; String? get description; DateTime get createdAt;@JsonKey(name: 'is_favorite') bool get isFavorite;@JsonKey(name: 'is_done') bool get isDone;
 /// Create a copy of ToDoModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $ToDoModelCopyWith<ToDoModel> get copyWith => _$ToDoModelCopyWithImpl<ToDoModel>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ToDoModel&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&(identical(other.isFavorite, isFavorite) || other.isFavorite == isFavorite)&&(identical(other.isDone, isDone) || other.isDone == isDone));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ToDoModel&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.isFavorite, isFavorite) || other.isFavorite == isFavorite)&&(identical(other.isDone, isDone) || other.isDone == isDone));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,title,description,isFavorite,isDone);
+int get hashCode => Object.hash(runtimeType,id,title,description,createdAt,isFavorite,isDone);
 
 @override
 String toString() {
-  return 'ToDoModel(id: $id, title: $title, description: $description, isFavorite: $isFavorite, isDone: $isDone)';
+  return 'ToDoModel(id: $id, title: $title, description: $description, createdAt: $createdAt, isFavorite: $isFavorite, isDone: $isDone)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $ToDoModelCopyWith<$Res>  {
   factory $ToDoModelCopyWith(ToDoModel value, $Res Function(ToDoModel) _then) = _$ToDoModelCopyWithImpl;
 @useResult
 $Res call({
- String id, String title, String? description,@JsonKey(name: 'is_favorite') bool isFavorite,@JsonKey(name: 'is_done') bool isDone
+ String id, String title, String? description, DateTime createdAt,@JsonKey(name: 'is_favorite') bool isFavorite,@JsonKey(name: 'is_done') bool isDone
 });
 
 
@@ -65,12 +65,13 @@ class _$ToDoModelCopyWithImpl<$Res>
 
 /// Create a copy of ToDoModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? description = freezed,Object? isFavorite = null,Object? isDone = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? description = freezed,Object? createdAt = null,Object? isFavorite = null,Object? isDone = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
-as String?,isFavorite: null == isFavorite ? _self.isFavorite : isFavorite // ignore: cast_nullable_to_non_nullable
+as String?,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as DateTime,isFavorite: null == isFavorite ? _self.isFavorite : isFavorite // ignore: cast_nullable_to_non_nullable
 as bool,isDone: null == isDone ? _self.isDone : isDone // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
@@ -157,10 +158,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String title,  String? description, @JsonKey(name: 'is_favorite')  bool isFavorite, @JsonKey(name: 'is_done')  bool isDone)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String title,  String? description,  DateTime createdAt, @JsonKey(name: 'is_favorite')  bool isFavorite, @JsonKey(name: 'is_done')  bool isDone)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ToDoModel() when $default != null:
-return $default(_that.id,_that.title,_that.description,_that.isFavorite,_that.isDone);case _:
+return $default(_that.id,_that.title,_that.description,_that.createdAt,_that.isFavorite,_that.isDone);case _:
   return orElse();
 
 }
@@ -178,10 +179,10 @@ return $default(_that.id,_that.title,_that.description,_that.isFavorite,_that.is
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String title,  String? description, @JsonKey(name: 'is_favorite')  bool isFavorite, @JsonKey(name: 'is_done')  bool isDone)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String title,  String? description,  DateTime createdAt, @JsonKey(name: 'is_favorite')  bool isFavorite, @JsonKey(name: 'is_done')  bool isDone)  $default,) {final _that = this;
 switch (_that) {
 case _ToDoModel():
-return $default(_that.id,_that.title,_that.description,_that.isFavorite,_that.isDone);case _:
+return $default(_that.id,_that.title,_that.description,_that.createdAt,_that.isFavorite,_that.isDone);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -198,10 +199,10 @@ return $default(_that.id,_that.title,_that.description,_that.isFavorite,_that.is
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String title,  String? description, @JsonKey(name: 'is_favorite')  bool isFavorite, @JsonKey(name: 'is_done')  bool isDone)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String title,  String? description,  DateTime createdAt, @JsonKey(name: 'is_favorite')  bool isFavorite, @JsonKey(name: 'is_done')  bool isDone)?  $default,) {final _that = this;
 switch (_that) {
 case _ToDoModel() when $default != null:
-return $default(_that.id,_that.title,_that.description,_that.isFavorite,_that.isDone);case _:
+return $default(_that.id,_that.title,_that.description,_that.createdAt,_that.isFavorite,_that.isDone);case _:
   return null;
 
 }
@@ -213,12 +214,13 @@ return $default(_that.id,_that.title,_that.description,_that.isFavorite,_that.is
 @JsonSerializable()
 
 class _ToDoModel implements ToDoModel {
-  const _ToDoModel({required this.id, required this.title, required this.description, @JsonKey(name: 'is_favorite') required this.isFavorite, @JsonKey(name: 'is_done') required this.isDone});
+  const _ToDoModel({required this.id, required this.title, required this.description, required this.createdAt, @JsonKey(name: 'is_favorite') required this.isFavorite, @JsonKey(name: 'is_done') required this.isDone});
   factory _ToDoModel.fromJson(Map<String, dynamic> json) => _$ToDoModelFromJson(json);
 
 @override final  String id;
 @override final  String title;
 @override final  String? description;
+@override final  DateTime createdAt;
 @override@JsonKey(name: 'is_favorite') final  bool isFavorite;
 @override@JsonKey(name: 'is_done') final  bool isDone;
 
@@ -235,16 +237,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ToDoModel&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&(identical(other.isFavorite, isFavorite) || other.isFavorite == isFavorite)&&(identical(other.isDone, isDone) || other.isDone == isDone));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ToDoModel&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.isFavorite, isFavorite) || other.isFavorite == isFavorite)&&(identical(other.isDone, isDone) || other.isDone == isDone));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,title,description,isFavorite,isDone);
+int get hashCode => Object.hash(runtimeType,id,title,description,createdAt,isFavorite,isDone);
 
 @override
 String toString() {
-  return 'ToDoModel(id: $id, title: $title, description: $description, isFavorite: $isFavorite, isDone: $isDone)';
+  return 'ToDoModel(id: $id, title: $title, description: $description, createdAt: $createdAt, isFavorite: $isFavorite, isDone: $isDone)';
 }
 
 
@@ -255,7 +257,7 @@ abstract mixin class _$ToDoModelCopyWith<$Res> implements $ToDoModelCopyWith<$Re
   factory _$ToDoModelCopyWith(_ToDoModel value, $Res Function(_ToDoModel) _then) = __$ToDoModelCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String title, String? description,@JsonKey(name: 'is_favorite') bool isFavorite,@JsonKey(name: 'is_done') bool isDone
+ String id, String title, String? description, DateTime createdAt,@JsonKey(name: 'is_favorite') bool isFavorite,@JsonKey(name: 'is_done') bool isDone
 });
 
 
@@ -272,12 +274,13 @@ class __$ToDoModelCopyWithImpl<$Res>
 
 /// Create a copy of ToDoModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? description = freezed,Object? isFavorite = null,Object? isDone = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? description = freezed,Object? createdAt = null,Object? isFavorite = null,Object? isDone = null,}) {
   return _then(_ToDoModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
-as String?,isFavorite: null == isFavorite ? _self.isFavorite : isFavorite // ignore: cast_nullable_to_non_nullable
+as String?,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as DateTime,isFavorite: null == isFavorite ? _self.isFavorite : isFavorite // ignore: cast_nullable_to_non_nullable
 as bool,isDone: null == isDone ? _self.isDone : isDone // ignore: cast_nullable_to_non_nullable
 as bool,
   ));

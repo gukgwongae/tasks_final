@@ -16,8 +16,25 @@ class ToDoRepository {
     await _db.collection('todos').doc(id).delete();
   }
 
-  Future<List<ToDoModel>> getToDos() async {
-    final snapshot = await _db.collection('todos').get();
-    return snapshot.docs.map((doc) => ToDoModel.fromJson(doc.data())).toList();
+  DocumentSnapshot? getLastDoc(QuerySnapshot snapshot) {
+    return snapshot.docs.isNotEmpty ? snapshot.docs.last : null;
+  }
+
+  Future<Map<String, dynamic>> getToDos({DocumentSnapshot? lastDoc}) async {
+    var query = _db
+        .collection('todos')
+        .orderBy('createdAt', descending: true)
+        .limit(15);
+    if (lastDoc != null) {
+      query = query.startAfterDocument(lastDoc);
+    }
+    final snapshot = await query.get();
+    final todos = snapshot.docs
+        .map((doc) => ToDoModel.fromJson(doc.data()))
+        .toList();
+    return {
+      'todos': todos,
+      'lastDoc': snapshot.docs.isNotEmpty ? snapshot.docs.last : null,
+    };
   }
 }

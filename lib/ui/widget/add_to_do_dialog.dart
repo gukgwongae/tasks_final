@@ -40,6 +40,7 @@ class AddToDoDialog extends HookConsumerWidget {
               : null,
           isFavorite: isFavorite.value,
           isDone: false,
+          createdAt: DateTime.now(),
         );
 
         ref.read(homePageViewModelProvider.notifier).addTodo(toDo: toDo);

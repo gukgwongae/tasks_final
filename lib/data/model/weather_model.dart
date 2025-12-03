@@ -25,7 +25,7 @@ DateTime _convertToDateTime(String timeString) {
 String _convertWeatherCode(num code) {
   final int c = code.toInt();
   if (c == 0) return '맑음';
-  if ([1, 2, 3].contains(c)) return '부분 흐림 또는 구름 많음';
+  if ([1, 2, 3].contains(c)) return '구름 많음';
   if ([45, 48].contains(c)) return '안개';
   if ([51, 53, 55].contains(c)) return '이슬비';
   if ([56, 57].contains(c)) return '언 이슬비';
